@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int speed;
-    public float direction;
-    public float jumpForce;
+    [SerializeField]
+    private int speed;
+    
+    [SerializeField]
+    private float jumpForce;
+
+    private float direction;
     Rigidbody2D rb;
 
     void Start()
@@ -14,7 +18,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Move();
         Jump();
@@ -30,6 +34,14 @@ public class Player : MonoBehaviour
             Debug.Log("Jump!");
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
+    }
+
+
+    private void OnTriggerStay2D(Collider2D other) {
+        if(other.gameObject.tag == "EnvironmentTrigger" && Input.GetAxisRaw("Vertical") > 0){
+            Debug.Log ("Tree");
+            rb.velocity = new Vector2(rb.velocity.x, 5);
+        }  
     }
 
 }

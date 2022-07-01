@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - bau
+  - EnvironmentTrigger
+  - Ground
   layers:
   - Default
   - TransparentFX
